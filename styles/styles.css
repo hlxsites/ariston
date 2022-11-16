@@ -217,6 +217,10 @@ main blockquote p::after {
   line-height: 0;
 }
 
+main svg {
+  display: block;
+}
+
 main img {
   max-width: 100%;
   display: block;

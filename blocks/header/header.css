@@ -43,6 +43,11 @@ header nav .nav-brand p {
   margin: 0;
 }
 
+header nav .nav-brand .icon {
+  display: inline-block;
+  width: 51px;
+}
+
 header nav .nav-brand img {
   width: 128px;
   height: auto;

@@ -55,6 +55,11 @@ function decorateOnPageNavigationAnchros(main) {
     .forEach((em) => {
       const text = em.innerText.substring(2, em.innerText.length - 1).trim();
       const id = toClassName(text);
+      const existingAnchor = document.getElementById(id);
+      if (existingAnchor) {
+        // delete the id if there is a conflict with another auto generated id
+        delete existingAnchor.id;
+      }
       const anchor = document.createElement('div');
       anchor.id = id;
       anchor.classList.add('opn-anchor');

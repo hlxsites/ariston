@@ -1,5 +1,5 @@
 main .section.specifications-container {
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 main .section.specifications-container .default-content-wrapper:first-of-type {
@@ -41,7 +41,6 @@ main .section.specifications-container .default-content-wrapper:first-of-type {
 }
 
 .specifications .tabs-switcher {
-    display: block;
     border-radius: 90px;
     height: 48px;
     padding: 4px;

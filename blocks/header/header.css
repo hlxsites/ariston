@@ -121,14 +121,12 @@ header nav .nav-sections {
 
 header nav .nav-sections ul  {
   font-size: 16px;
-  font-weight: 500;
   list-style: none;
   padding-left: 0;
 }
 
 header nav .nav-sections li {
   font-size: 20px;
-  font-weight: 500;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
@@ -165,6 +163,10 @@ header nav .nav-tools button.region-selector {
   transition-property: background-color, color;
   transition-duration: 200ms;
   width: 100%;
+  border: none;
+  border-radius: 23px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 header nav .nav-tools button.region-selector:hover {

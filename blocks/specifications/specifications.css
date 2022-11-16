@@ -1,5 +1,6 @@
 main .section.specifications-container {
     padding-top: 0;
+    padding-bottom: 5.625rem;
 }
 
 main .section.specifications-container .default-content-wrapper:first-of-type {

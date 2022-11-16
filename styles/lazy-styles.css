@@ -13,3 +13,10 @@
     font-display: swap;
     src: url("/styles/fonts/ProximaNova-Bold.woff") format("woff");
 }
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url("/styles/fonts/ProximaNova-Semibold.woff") format("woff");
+}

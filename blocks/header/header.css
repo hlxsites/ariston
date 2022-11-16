@@ -256,6 +256,13 @@ header nav[aria-expanded='true'] .nav-tools li {
     justify-content: center;
   }
 
+  header nav .nav-sections > ul > li a {
+    font-size: 9pt;
+    letter-spacing: 0.02em;
+    line-height: 9pt;
+    font-weight: 600;
+  }
+
   header nav[aria-expanded='true'] .nav-sections ol {
     display: flex;
     min-height: unset;

@@ -22,6 +22,7 @@ footer .footer .footer-links {
 
 footer .footer .footer-links ul {
   padding: 0;
+  margin: 0;
   list-style: none;
   display: flex;
   gap: 20px;
@@ -59,5 +60,10 @@ footer .footer hr {
 
   footer .footer hr {
     display: none;
+  }
+
+  footer .footer.block {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }

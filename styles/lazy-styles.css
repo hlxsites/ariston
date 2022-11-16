@@ -1,1 +1,15 @@
 /* below the fold CSS goes here */
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url("/styles/fonts/ProximaNova-Regular.woff") format("woff");
+}
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url("/styles/fonts/ProximaNova-Bold.woff") format("woff");
+}

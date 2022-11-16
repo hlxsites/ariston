@@ -12,9 +12,10 @@ import {
   loadBlocks,
   loadCSS,
   createOptimizedPicture,
+  toClassName,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 function buildHeroBlock(main) {
@@ -28,7 +29,7 @@ function buildHeroBlock(main) {
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
-    section.append(buildBlock('hero', [[{ elems: [paragraphs[0], h1, paragraphs[1]] }, optimizedPicture]]));
+    section.append(buildBlock('hero', [[{ elems: [paragraphs[0], h1, paragraphs[1], ...paragraphs.slice(2)] }, optimizedPicture]]));
     main.prepend(section);
   }
 }
@@ -46,6 +47,32 @@ function buildAutoBlocks(main) {
   }
 }
 
+function decorateOnPageNavigationAnchros(main) {
+  [...main.querySelectorAll('em')]
+    .filter((em) => em.innerText.charAt(0) === '('
+      && em.innerText.charCodeAt(1) === 9875
+      && em.innerText.charAt(em.innerText.length - 1) === ')')
+    .forEach((em) => {
+      const text = em.innerText.substring(2, em.innerText.length - 1).trim();
+      const id = toClassName(text);
+      const existingAnchor = document.getElementById(id);
+      if (existingAnchor) {
+        // delete the id if there is a conflict with another auto generated id
+        delete existingAnchor.id;
+      }
+      const anchor = document.createElement('div');
+      anchor.id = id;
+      anchor.classList.add('opn-anchor');
+      anchor.dataset.label = text;
+      const up = em.parentElement;
+      if (up.tagName === 'P' && up.children.length === 1) {
+        up.replaceWith(anchor);
+      } else {
+        em.replaceWith(anchor);
+      }
+    });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -58,6 +85,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateOnPageNavigationAnchros(main);
 }
 
 /**
@@ -80,7 +108,6 @@ async function loadEager(doc) {
 export function addFavIcon(href) {
   const link = document.createElement('link');
   link.rel = 'icon';
-  link.type = 'image/svg+xml';
   link.href = href;
   const existingLink = document.querySelector('head link[rel="icon"]');
   if (existingLink) {
@@ -105,7 +132,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
+  addFavIcon(`${window.hlx.codeBasePath}/icons/favicon.png`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));

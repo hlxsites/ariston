@@ -1,13 +1,34 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
-/**
- * collapses all open nav sections
- * @param {Element} sections The container element
- */
+function setActiveLink(navSections, activeSection) {
+  // Make first link selected if none are selected
+  if (activeSection === '' && navSections) {
+    [...navSections.querySelectorAll(':scope > ul > li')]?.[0].classList.add('selected');
+  }
 
-function collapseAllNavSections(sections) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', 'false');
+  if (navSections && activeSection !== '') {
+    navSections.querySelectorAll(':scope > ul > li > a').forEach((navSection) => {
+      navSection.parentElement.classList.remove('selected');
+      if (new URL(navSection.href).hash === activeSection) navSection.parentElement.classList.add('selected');
+    });
+  }
+}
+
+function collectNavSections($sectionsContainer) {
+  const anchors = [...document.querySelectorAll('.opn-anchor')].map((anchor) => [anchor.dataset.label, anchor.id]);
+
+  if (!anchors.length) {
+    return;
+  }
+
+  $sectionsContainer.innerHTML = `
+    <ul>
+        ${anchors.map(([text, anchor]) => `<li><a href="#${anchor}">${text}</a></li>`).join('\n')}
+    </ul>
+  `;
+
+  [...$sectionsContainer.querySelectorAll(':scope > ul > li > a')].forEach((aTag) => {
+    aTag.addEventListener('click', () => setActiveLink($sectionsContainer, new URL(aTag.href).hash));
   });
 }
 
@@ -38,16 +59,15 @@ export default async function decorate(block) {
     });
 
     const navSections = [...nav.children][1];
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          collapseAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        });
-      });
-    }
+    collectNavSections(navSections);
+    setActiveLink(navSections, window.location.hash);
+
+    // add region selector to tools
+    const regionSelector = document.createElement('div');
+    regionSelector.innerHTML = `
+      <button class="region-selector"><span><span class="icon icon-grid" /></span><span>CAMBIA AREA</span></button>
+    `;
+    nav.querySelector('.nav-tools').append(regionSelector);
 
     // hamburger for mobile
     const hamburger = document.createElement('div');

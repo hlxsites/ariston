@@ -58,6 +58,31 @@
   /* nav height */
   --nav-height: 64px;
 
+  /* customer styles */
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",roboto,"Helvetica Neue",arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --bs-font-monospace: sfmono-regular,menlo,monaco,consolas,"Liberation Mono","Courier New",monospace;
+  --bs-gradient: linear-gradient(180deg, rgb(255 255 255 / 15%), rgb(255 255 255 / 0%));
 }
 
 body {
@@ -68,6 +93,10 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body.appear {
@@ -93,7 +122,7 @@ h3 { font-size: var(--heading-font-size-l) }
 
 .default-content-wrapper > :where(h1, h2, h3) {
   font-size: var(--heading-font-size-xxl);
-  padding-top: 6.25rem;
+  margin-top: 6.25rem;
   margin-bottom: 3rem;
 }
 
@@ -147,7 +176,7 @@ a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
-} 
+}
 
 
 main input {
@@ -156,7 +185,7 @@ main input {
   max-width: 50rem;
   display: block;
   margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;    
+  padding: 0.75rem 0.6rem;
   border-radius: 0.25rem;
   box-sizing: border-box;
   border: 1px solid var(--text-color);
@@ -187,20 +216,27 @@ main blockquote p::after {
 
 main img {
   max-width: 100%;
-  width: auto;
+  display: block;
+  width: 100%;
   height: auto;
 }
 
 @media (min-width: 600px) {
   main .section {
     padding: 0 .9375rem;
-  }  
+  }
 }
 
 @media (min-width: 900px) {
   .section > div {
     max-width: 1200px;
     margin: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --nav-height: 120px;
   }
 }
 
@@ -218,4 +254,19 @@ main .section.highlight {
 
 main .section.highlight .default-content-wrapper > :where(h1, h2, h3):first-child {
   padding-top: 0;
+}
+
+.opn-anchor {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1000px) {
+  .opn-anchor {
+    display: block;
+    position: relative;
+    top: calc(-1 * var(--nav-height) - 3rem);
+  }
 }

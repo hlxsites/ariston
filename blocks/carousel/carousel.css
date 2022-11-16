@@ -1,0 +1,25 @@
+.carousel.block ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 50px;
+  transition: transform 200ms;
+}
+
+.carousel.block > div > div {
+  overflow: hidden;
+}
+
+.carousel.block ul li {
+  flex-shrink: 0;
+}
+
+.carousel.block ul li img {
+  height: 400px;
+  width: 400px;
+  display: block;
+  object-fit: cover;
+}
+
+

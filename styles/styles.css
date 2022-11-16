@@ -41,12 +41,12 @@
   --heading-font-family: var(--body-font-family);
 
   /* body sizes */
-  --body-font-size-m: 16px;
+  --body-font-size-m: 1rem;
 
   /* heading sizes */
-  --heading-font-size-xxl: 32px;
-  --heading-font-size-xl: 24px;
-  --heading-font-size-l: 16px;
+  --heading-font-size-xxl: 2rem;
+  --heading-font-size-xl: 1.5rem;
+  --heading-font-size-l: 1rem;
 
   /* nav height */
   --nav-height: 64px;
@@ -75,9 +75,9 @@ h1, h2, h3 {
   color: var(--heading-color);
   font-family: var(--heading-font-family);
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.5rem;
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 h1 { font-size: var(--heading-font-size-xxl) }
@@ -208,6 +208,6 @@ main .section.highlight {
 
 main .section.big-heading > .default-content-wrapper > :where(h1, h2, h3) {
   font-size: var(--heading-font-size-xxl);
-  padding-top: 100px;
-  margin-bottom: 112px;
+  padding-top: 6.25rem;
+  margin-bottom: 7rem;
 }

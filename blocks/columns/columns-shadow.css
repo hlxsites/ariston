@@ -1,0 +1,8 @@
+.columns.shadow {
+    border-radius: 2px;
+    box-shadow: 0 0 20px hsl(0deg 0% 56% / 20%);   
+}
+
+.columns.shadow {
+    padding: 5.75rem 6.25rem 5.75rem 0;
+}

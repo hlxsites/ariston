@@ -1,0 +1,64 @@
+.columns.schema > div  {
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.columns.schema > div > div {
+    margin: 0;
+}
+
+.columns.schema > div > div:nth-child(1) {
+    flex: 0 0 auto;
+    width: 50%;
+}
+
+.columns.schema > div > div:nth-child(2) {
+    flex: 0 0 auto;
+    width: 40%;
+    max-width: 370px;
+}
+
+.columns.schema ul {
+    padding-left: 1rem;
+}
+
+.columns.schema ul li::marker {
+    color: var(--link-color);
+    font-size: large;
+}
+
+.columns.schema ul li:not(:last-child) {
+    padding-bottom: 1.5rem;
+}
+
+.columns.schema .button-container {
+    margin-top: 5.75rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.columns.schema .button-container a {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.columns.schema .button-container a:nth-child(1) {
+    flex: 0 0 auto;
+    width: 40%;
+    height: 41px;
+    line-height: 41px;
+    padding: 0;
+    font-size: 0.875rem;
+}
+
+.columns.schema .button-container a:nth-child(2) {
+    flex: 0 0 auto;
+    width: 50%;
+    font-size: 0.75rem;
+}
+
+.columns.schema .button-container a:nth-child(2) svg {
+    margin-left: 10px;
+}

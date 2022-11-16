@@ -122,7 +122,7 @@ h3 { font-size: var(--heading-font-size-l) }
 
 .default-content-wrapper > :where(h1, h2, h3) {
   font-size: var(--heading-font-size-xxl);
-  padding-top: 6.25rem;
+  margin-top: 6.25rem;
   margin-bottom: 3rem;
 }
 
@@ -216,7 +216,8 @@ main blockquote p::after {
 
 main img {
   max-width: 100%;
-  width: auto;
+  display: block;
+  width: 100%;
   height: auto;
 }
 
@@ -253,4 +254,19 @@ main .section.highlight {
 
 main .section.highlight .default-content-wrapper > :where(h1, h2, h3):first-child {
   padding-top: 0;
+}
+
+.opn-anchor {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1000px) {
+  .opn-anchor {
+    display: block;
+    position: relative;
+    top: calc(-1 * var(--nav-height) - 3rem);
+  }
 }

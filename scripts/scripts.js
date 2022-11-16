@@ -12,9 +12,10 @@ import {
   loadBlocks,
   loadCSS,
   createOptimizedPicture,
+  toClassName,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = ['header']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 function buildHeroBlock(main) {
@@ -46,6 +47,27 @@ function buildAutoBlocks(main) {
   }
 }
 
+function decorateOnPageNavigationAnchros(main) {
+  [...main.querySelectorAll('em')]
+    .filter((em) => em.innerText.charAt(0) === '('
+      && em.innerText.charCodeAt(1) === 9875
+      && em.innerText.charAt(em.innerText.length - 1) === ')')
+    .forEach((em) => {
+      const text = em.innerText.substring(2, em.innerText.length - 1).trim();
+      const id = toClassName(text);
+      const anchor = document.createElement('div');
+      anchor.id = id;
+      anchor.classList.add('opn-anchor');
+      anchor.dataset.label = text;
+      const up = em.parentElement;
+      if (up.tagName === 'P' && up.children.length === 1) {
+        up.replaceWith(anchor);
+      } else {
+        em.replaceWith(anchor);
+      }
+    });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -58,6 +80,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateOnPageNavigationAnchros(main);
 }
 
 /**

@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
+import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
 function setActiveLink(navSections, activeSection) {
   // Make first link selected if none are selected
@@ -15,23 +15,15 @@ function setActiveLink(navSections, activeSection) {
 }
 
 function collectNavSections($sectionsContainer) {
-  const allEms = [...document.querySelectorAll('em')];
-  const tagEms = allEms.filter((em) => em.innerText.startsWith('(') && em.innerText.charCodeAt(1) === 9875);
-  if (tagEms.length === 0) {
+  const anchors = [...document.querySelectorAll('.opn-anchor')].map((anchor) => [anchor.dataset.label, anchor.id]);
+
+  if (!anchors.length) {
     return;
   }
-  const linkTexts = tagEms.map((em) => em.innerText.trim().substring(2, em.innerText.length - 1));
-  const anchors = linkTexts.map((text) => toClassName(text));
-
-  tagEms.forEach((em, i) => {
-    const landingAnchorTag = document.createElement('a');
-    landingAnchorTag.id = anchors[i];
-    em.replaceWith(landingAnchorTag);
-  });
 
   $sectionsContainer.innerHTML = `
     <ul>
-        ${anchors.map((anchor, i) => `<li><a href="#${anchor}">${linkTexts[i]}</a></li>`).join('\n')}
+        ${anchors.map(([text, anchor]) => `<li><a href="#${anchor}">${text}</a></li>`).join('\n')}
     </ul>
   `;
 
@@ -67,7 +59,6 @@ export default async function decorate(block) {
     });
 
     const navSections = [...nav.children][1];
-
     collectNavSections(navSections);
     setActiveLink(navSections, window.location.hash);
 

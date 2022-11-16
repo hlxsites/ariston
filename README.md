@@ -1,5 +1,4 @@
-# Your Project's Title...
-Your project's description...
+# Ariston franklin site
 
 ## Environments
 - Preview: https://main--ariston--hlxsites.hlx.page/

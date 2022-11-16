@@ -1,0 +1,17 @@
+.columns.q-a > div > div :nth-child(1),
+.columns.q-a > div > div :nth-child(2) {
+    text-transform: uppercase;
+    color: var(--heading-color);
+    font-size: var(--text-size);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.columns.q-a > div > div :nth-child(1) {
+    margin-bottom: 3rem;
+}
+
+.columns.q-a > div > div :nth-child(2) {
+    color: var(--link-color);
+    margin-bottom: 2.75rem;
+}

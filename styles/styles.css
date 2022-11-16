@@ -10,32 +10,43 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+
+/* fallback font for Proxima Nova */
+@font-face {
+  font-family: proxima-nova-fallback;
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 97.629%;
+  src: local("Arial");
+}
+@font-face {
+  font-family: proxima-nova-fallback;
+  font-weight: 700;
+  font-style: normal;
+  size-adjust: 101.341%;
+  src: local("Arial");
+}
+
+:root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
+  --link-color: #ad0021;
+  --link-hover-color: #fff;
   --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
+  --highlight-background-color: #f5f5f5;
+  --text-color: #585857;
+  --heading-color: #333;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: 'Proxima Nova', proxima-nova-fallback, sans-serif;
   --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 14px;
+  --body-font-size-m: 1rem;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xxl: 2rem;
+  --heading-font-size-xl: 1.5rem;
+  --heading-font-size-l: 1rem;
 
   /* nav height */
   --nav-height: 64px;
@@ -46,7 +57,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--body-font-family);
-  line-height: 1.6;
+  line-height: 1.375;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
@@ -60,26 +71,23 @@ header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1, h2, h3 {
+  color: var(--heading-color);
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  margin-top: 1em;
-  margin-bottom: .5em;
-  scroll-margin: calc(var(--nav-height) + 1em);
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
 }
 
 h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
 
 p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.375rem;
 }
 
 a:any-link {
@@ -90,11 +98,6 @@ a:any-link {
 a:hover {
   text-decoration: underline;
   color: var(--link-hover-color);
-}
-
-code, pre, samp {
-  font-family: var(--fixed-font-family);
-  font-size: var(--body-font-size-s);
 }
 
 code, samp {
@@ -112,29 +115,19 @@ a.button:any-link, button {
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
+  border: 1px solid var(--link-color);
+  padding: 9pt;
   text-align: center;
-  font-style: normal; 
-  font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
   background-color: var(--link-color);
-  margin: 16px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 30px;
+  border-radius: 2px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
   background-color: var(--link-hover-color);
+  color: var(--link-color);
   cursor: pointer;
-}
-
-button:disabled, button:disabled:hover {
-  background-color: var(--overlay-background-color);
-  cursor: unset;
 }
 
 a.button.secondary, button.secondary {
@@ -166,14 +159,6 @@ main .section {
   padding: 64px 16px;
 }
 
-main pre {
-  background-color: var(--overlay-background-color);
-  padding: 1em;
-  border-radius: .25em;
-  overflow-x: auto;
-  white-space: pre;
-}
-
 main blockquote {
   font-style: italic;
   margin: 3rem;
@@ -191,13 +176,6 @@ main blockquote p::after {
   line-height: 0;
 }
 
-hr {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-  border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
-}
-
 main img {
   max-width: 100%;
   width: auto;
@@ -211,15 +189,6 @@ main img {
 }
 
 @media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;  
-  }
-  
   .section > div {
     max-width: 1200px;
     margin: auto;
@@ -232,6 +201,13 @@ main .section[data-section-status='initialized'] {
   display: none;
 }
 
+/* section highlights */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+main .section.big-heading > .default-content-wrapper > :where(h1, h2, h3) {
+  font-size: var(--heading-font-size-xxl);
+  padding-top: 6.25rem;
+  margin-bottom: 7rem;
 }

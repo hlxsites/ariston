@@ -1,3 +1,6 @@
+.columns.schema {
+    padding: 5.75rem 6.25rem 5.75rem 0;
+}
 .columns.schema > div  {
     justify-content: space-between;
     flex-direction: row;

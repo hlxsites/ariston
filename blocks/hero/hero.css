@@ -6,6 +6,7 @@ main .hero-container {
 main .hero > div {
     display: flex;
     flex-direction: column;
+    flex-direction: column-reverse;
 }
 
 main .hero > div > div {

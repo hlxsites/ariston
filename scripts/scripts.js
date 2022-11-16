@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  createOptimizedPicture,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -20,11 +21,14 @@ function buildHeroBlock(main) {
   // Collect h1, two paragraphs and photo
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
+  const img = picture.querySelector('img');
+  const optimizedPicture = createOptimizedPicture(img.src, img.alt, true, [{ width: 640 }]);
+
   const paragraphs = Array.from(h1.parentElement.querySelectorAll('p')).filter((e) => e !== picture.parentElement);
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
-    section.append(buildBlock('hero', [[{ elems: [paragraphs[0], h1, paragraphs[1]] }, picture]]));
+    section.append(buildBlock('hero', [[{ elems: [paragraphs[0], h1, paragraphs[1]] }, optimizedPicture]]));
     main.prepend(section);
   }
 }

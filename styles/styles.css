@@ -10,7 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+
+/* fallback font for Proxima Nova */
+@font-face {
+  font-family: "proxima-nova-fallback";
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 97.629%;
+  src: local("Arial");
+}
+@font-face {
+  font-family: "proxima-nova-fallback";
+  font-weight: 700;
+  font-style: normal;
+  size-adjust: 101.341%;
+  src: local("Arial");
+}
+
+:root {
   /* colors */
   --link-color: #ad0021;
   --link-hover-color: #fff;
@@ -20,7 +37,7 @@
   --heading-color: #333;
 
   /* fonts */
-  --body-font-family: 'Proxima Nova', sans-serif;
+  --body-font-family: 'Proxima Nova', proxima-nova-fallback, sans-serif;
   --heading-font-family: var(--body-font-family);
 
   /* body sizes */

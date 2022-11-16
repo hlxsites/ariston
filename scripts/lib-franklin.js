@@ -353,8 +353,8 @@ export async function loadBlock(block) {
         loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
       });
       const additionalCssLoaded = Promise.all([...block.classList]
-        .filter(cls => cls !== blockName && cls !== 'block')
-        .map(cls => new Promise((resolve) => {
+        .filter((cls) => cls !== blockName && cls !== 'block')
+        .map((cls) => new Promise((resolve) => {
           loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}-${cls}.css`, resolve);
         })));
       const decorationComplete = new Promise((resolve) => {

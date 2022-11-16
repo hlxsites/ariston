@@ -1,31 +1,22 @@
 main .hero-container {
     padding: 0;
+    margin-top: -54px;
     background: var(--highlight-background-color);
 }
 
 main .hero > div {
     display: flex;
+    padding: 1.5625rem 1.25rem 3.75rem;
     flex-direction: column;
-    flex-direction: column-reverse;
+}
+
+main .hero .button {
+    width: 100%;
+    display: block;
 }
 
 main .hero > div > div {
     flex: 1;
-}
-
-@media (min-width: 900px) {
-    main .hero > div {
-        flex-direction: row;
-    }
-
-    main .hero > div > div:last-child {
-        width: 670px;
-    }
-}
-
-main .hero > div > div:first-child {
-    padding-top: 46px;
-    margin-right: 40px;
 }
 
 main .hero p:first-child {
@@ -36,8 +27,8 @@ main .hero h1 {
     letter-spacing: 3px;
     text-transform: uppercase;
     word-break: break-word;
-    line-height: 48px;
-    font-size: 48px;
+    font-size: 2rem;
+    line-height: 3rem;
     font-weight: 700;
 }
 
@@ -47,4 +38,34 @@ main .hero img {
     height: 100%;
     width: 100%;
     object-position: center center;
+}
+
+@media (min-width: 1024px) {
+    main .hero h1 {
+        line-height: 48px;
+        font-size: 48px;
+    }
+
+    main .hero .button {
+        display: unset;
+    }
+
+    main .hero > div {
+        flex-direction: row;
+        padding: 0 0.9375rem;
+        min-height: 629px;
+    }
+
+    main .hero > div > div:first-child {
+        padding-top: 100px;
+        padding-right: 40px;
+        max-width: 694px;
+        width: 100%;
+    }
+
+    main .hero > div > div:last-child {
+        width: 670px;
+        margin-right: -8%;
+        flex: 0 1 auto;
+    }
 }

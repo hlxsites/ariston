@@ -23,7 +23,7 @@ function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
   const img = picture.querySelector('img');
-  const optimizedPicture = createOptimizedPicture(img.src, img.alt, true, [{ width: 640 }]);
+  const optimizedPicture = createOptimizedPicture(img.src, img.alt, true, [{ width: 670 }]);
 
   const paragraphs = Array.from(h1.parentElement.querySelectorAll('p')).filter((e) => e !== picture.parentElement);
   // eslint-disable-next-line no-bitwise

@@ -178,6 +178,9 @@ a.button.secondary, button.secondary {
   color: var(--text-color)
 }
 
+main {
+  overflow-x: hidden;
+}
 
 main input {
   font-size: 1.25rem;

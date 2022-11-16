@@ -57,6 +57,13 @@ export default async function decorate(block) {
       });
     }
 
+    // add region selector to tools
+    const regionSelector = document.createElement('div');
+    regionSelector.innerHTML = `
+      <button class="region-selector"><span><span class="icon icon-grid" /></span><span>CAMBIA AREA</span></button>
+    `;
+    nav.querySelector('.nav-tools').append(regionSelector);
+
     // hamburger for mobile
     const hamburger = document.createElement('div');
     hamburger.classList.add('nav-hamburger');

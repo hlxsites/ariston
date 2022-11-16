@@ -26,6 +26,13 @@
   size-adjust: 101.341%;
   src: local("Arial");
 }
+@font-face {
+  font-family: proxima-nova-fallback;
+  font-weight: 600;
+  font-style: normal;
+  size-adjust: 99.75%;
+  src: local("Arial");
+}
 
 :root {
   /* colors */
@@ -113,6 +120,12 @@ h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
 
+.default-content-wrapper > :where(h1, h2, h3) {
+  font-size: var(--heading-font-size-xxl);
+  padding-top: 6.25rem;
+  margin-bottom: 3rem;
+}
+
 p, dl, ol, ul, pre, blockquote {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -184,10 +197,6 @@ main input:hover {
   border: 1px solid var(--text-color);
 }
 
-main .section {
-  padding: 64px 16px;
-}
-
 main blockquote {
   font-style: italic;
   margin: 3rem;
@@ -213,7 +222,7 @@ main img {
 
 @media (min-width: 600px) {
   main .section {
-    padding: 64px 32px;
+    padding: 0 .9375rem;
   }
 }
 
@@ -239,10 +248,9 @@ main .section[data-section-status='initialized'] {
 /* section highlights */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+  padding: 6.25rem .9375rem;
 }
 
-main .section.big-heading > .default-content-wrapper > :where(h1, h2, h3) {
-  font-size: var(--heading-font-size-xxl);
-  padding-top: 6.25rem;
-  margin-bottom: 7rem;
+main .section.highlight .default-content-wrapper > :where(h1, h2, h3):first-child {
+  padding-top: 0;
 }

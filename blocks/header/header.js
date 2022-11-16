@@ -6,7 +6,7 @@ function setActiveLink(navSections, activeSection) {
     [...navSections.querySelectorAll(':scope > ul > li')]?.[0].classList.add('selected');
   }
 
-  if (navSections) {
+  if (navSections && activeSection !== '') {
     navSections.querySelectorAll(':scope > ul > li > a').forEach((navSection) => {
       navSection.parentElement.classList.remove('selected');
       if (new URL(navSection.href).hash === activeSection) navSection.parentElement.classList.add('selected');
@@ -16,11 +16,11 @@ function setActiveLink(navSections, activeSection) {
 
 function collectNavSections($sectionsContainer) {
   const allEms = [...document.querySelectorAll('em')];
-  const tagEms = allEms.filter((em) => em.innerText.startsWith('(⚓️'));
+  const tagEms = allEms.filter((em) => em.innerText.startsWith('(') && em.innerText.charCodeAt(1) === 9875);
   if (tagEms.length === 0) {
     return;
   }
-  const linkTexts = tagEms.map((em) => em.innerText.substring(2, em.innerText.length - 1));
+  const linkTexts = tagEms.map((em) => em.innerText.trim().substring(2, em.innerText.length - 1));
   const anchors = linkTexts.map((text) => toClassName(text));
 
   tagEms.forEach((em, i) => {

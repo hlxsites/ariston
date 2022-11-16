@@ -1,0 +1,77 @@
+main .section.specifications-container {
+    padding-top: 0;
+}
+
+main .section.specifications-container .default-content-wrapper:first-of-type {
+    display: none;
+}
+
+.specifications input {
+    display: none;
+}
+
+.specifications .tab-content {
+    display: none;
+    width: 100%;
+    grid-template-columns: auto;
+    padding-top: 50px;
+}
+
+@media (min-width: 900px) {
+    .specifications .tab-content {
+        grid-template-columns: 50% 50%;
+    }
+
+    .specifications .tab-content .specification:nth-child(odd) {
+        margin-right: 32px;
+    }
+}
+
+.specifications .tab-content .specification {
+    border-bottom: 1px solid #a3acb2;
+    color: var(--text-color);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.specifications .tab-content .specification span {
+    font-weight: 400;
+    color: #858e94;
+}
+
+.specifications .tabs-switcher {
+    border-radius: 90px;
+    height: 48px;
+    padding: 4px;
+    box-shadow: 0 0 13.7241px hsl(0deg 0% 56% / 20%);
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    background: var(--background-color);
+    position: relative;
+    top: -28px;
+}
+
+.specifications .tabs-switcher label {
+    display: flex;
+    flex: 1;
+    border-radius: 74px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.specifications input:nth-of-type(1):checked ~ .tabs-switcher label:nth-of-type(1),
+.specifications input:nth-of-type(2):checked ~ .tabs-switcher label:nth-of-type(2) {
+    background: var(--link-color);
+    color: var(--link-hover-color);
+}
+
+.specifications input:nth-of-type(1):checked ~ .tab-content:nth-of-type(2),
+.specifications input:nth-of-type(2):checked ~ .tab-content:nth-of-type(3) {
+    display: grid;
+}

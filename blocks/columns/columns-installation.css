@@ -1,0 +1,37 @@
+.columns.installation h2 {
+    font-size: var(--heading-font-size-l);
+    margin-bottom: 2.5;
+    letter-spacing: 0.125rem;
+}
+
+.columns.installation img {
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 3.5rem;
+}
+
+.columns.installation ul {
+    padding-left: 1rem;
+}
+
+.columns.installation ul li::marker {
+    color: var(--link-color);
+    font-size: large;
+}
+
+.columns.installation ul li:not(:last-child) {
+    padding-bottom: 2rem;
+}
+
+.columns.installation > div > div {
+    padding: 2rem;
+}
+
+.columns.installation > div > div:nth-child(1) {
+    max-width: calc(431px - 5rem);
+}
+
+.columns.installation > div > div:nth-child(2) {
+    margin: 0;
+    background-color: var(--highlight-background-color);
+}

@@ -235,6 +235,10 @@ header nav[aria-expanded='true'] .nav-tools li {
     padding-top: 0;
   }
 
+  header nav .nav-sections > ul > li.selected {
+    color: white;
+  }
+
   header nav .nav-sections > ul > li > p {
     margin: 0;
   }

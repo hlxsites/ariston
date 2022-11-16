@@ -38,8 +38,16 @@ export default async function decorate(block) {
     });
 
     const navSections = [...nav.children][1];
+
+    // Make first link selected if none are selected
+    const locationHash = window.location.hash;
+    if (locationHash === '' && navSections) {
+      [...navSections.querySelectorAll(':scope > ul > li')]?.[0].classList.add('selected');
+    }
+
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+        if (`#${navSection.innerText.toLowerCase()}` === locationHash.toLowerCase()) navSection.classList.add('selected');
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('click', () => {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';

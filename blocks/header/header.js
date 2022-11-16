@@ -1,13 +1,42 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { readBlockConfig, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
 
-/**
- * collapses all open nav sections
- * @param {Element} sections The container element
- */
+function setActiveLink(navSections, activeSection) {
+  // Make first link selected if none are selected
+  if (activeSection === '' && navSections) {
+    [...navSections.querySelectorAll(':scope > ul > li')]?.[0].classList.add('selected');
+  }
 
-function collapseAllNavSections(sections) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', 'false');
+  if (navSections) {
+    navSections.querySelectorAll(':scope > ul > li > a').forEach((navSection) => {
+      navSection.parentElement.classList.remove('selected');
+      if (new URL(navSection.href).hash === activeSection) navSection.parentElement.classList.add('selected');
+    });
+  }
+}
+
+function collectNavSections($sectionsContainer) {
+  const allEms = [...document.querySelectorAll('em')];
+  const tagEms = allEms.filter((em) => em.innerText.startsWith('(⚓️'));
+  if (tagEms.length === 0) {
+    return;
+  }
+  const linkTexts = tagEms.map((em) => em.innerText.substring(2, em.innerText.length - 1));
+  const anchors = linkTexts.map((text) => toClassName(text));
+
+  tagEms.forEach((em, i) => {
+    const landingAnchorTag = document.createElement('a');
+    landingAnchorTag.id = anchors[i];
+    em.replaceWith(landingAnchorTag);
+  });
+
+  $sectionsContainer.innerHTML = `
+    <ul>
+        ${anchors.map((anchor, i) => `<li><a href="#${anchor}">${linkTexts[i]}</a></li>`).join('\n')}
+    </ul>
+  `;
+
+  [...$sectionsContainer.querySelectorAll(':scope > ul > li > a')].forEach((aTag) => {
+    aTag.addEventListener('click', () => setActiveLink($sectionsContainer, new URL(aTag.href).hash));
   });
 }
 
@@ -39,23 +68,8 @@ export default async function decorate(block) {
 
     const navSections = [...nav.children][1];
 
-    // Make first link selected if none are selected
-    const locationHash = window.location.hash;
-    if (locationHash === '' && navSections) {
-      [...navSections.querySelectorAll(':scope > ul > li')]?.[0].classList.add('selected');
-    }
-
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (`#${navSection.innerText.toLowerCase()}` === locationHash.toLowerCase()) navSection.classList.add('selected');
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          collapseAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        });
-      });
-    }
+    collectNavSections(navSections);
+    setActiveLink(navSections, window.location.hash);
 
     // add region selector to tools
     const regionSelector = document.createElement('div');

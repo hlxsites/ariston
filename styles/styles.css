@@ -88,6 +88,10 @@ body {
   display: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body.appear {
   display: unset;
 }

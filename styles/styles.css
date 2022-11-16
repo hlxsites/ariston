@@ -13,14 +13,14 @@
 
 /* fallback font for Proxima Nova */
 @font-face {
-  font-family: "proxima-nova-fallback";
+  font-family: proxima-nova-fallback;
   font-weight: 400;
   font-style: normal;
   size-adjust: 97.629%;
   src: local("Arial");
 }
 @font-face {
-  font-family: "proxima-nova-fallback";
+  font-family: proxima-nova-fallback;
   font-weight: 700;
   font-style: normal;
   size-adjust: 101.341%;

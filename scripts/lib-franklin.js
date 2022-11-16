@@ -352,6 +352,11 @@ export async function loadBlock(block) {
       const cssLoaded = new Promise((resolve) => {
         loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
       });
+      const additionalCssLoaded = Promise.all([...block.classList]
+        .filter(cls => cls !== blockName && cls !== 'block')
+        .map(cls => new Promise((resolve) => {
+          loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}-${cls}.css`, resolve);
+        })));
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
@@ -366,7 +371,7 @@ export async function loadBlock(block) {
           resolve();
         })();
       });
-      await Promise.all([cssLoaded, decorationComplete]);
+      await Promise.all([cssLoaded, additionalCssLoaded, decorationComplete]);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(`failed to load block ${blockName}`, error);

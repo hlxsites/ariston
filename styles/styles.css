@@ -54,8 +54,7 @@ header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1, h2, h3 {
   color: var(--heading-color);
   font-family: var(--heading-font-family);
   font-weight: 700;
@@ -69,8 +68,9 @@ h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
 
 p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.375rem;
 }
 
 a:any-link {
@@ -184,6 +184,13 @@ main .section[data-section-status='initialized'] {
   display: none;
 }
 
+/* section highlights */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+main .section.big-heading > .default-content-wrapper > :where(h1, h2, h3) {
+  font-size: var(--heading-font-size-xxl);
+  padding-top: 100px;
+  margin-bottom: 112px;
 }

@@ -14,11 +14,32 @@ function updateSlide(nextIndex, $block) {
   $slidesContainer.style.transform = `translateX(-${nextIndex * 450}px)`;
 }
 
+function decorateTeaserItems($slidesContainer) {
+  [...$slidesContainer.children].forEach(($child) => {
+    const aTag = $child.querySelector('a');
+    if (aTag) {
+      const newATag = aTag.cloneNode();
+      aTag.remove();
+      newATag.innerHTML = $child.innerHTML;
+      $child.innerHTML = '';
+      $child.append(newATag);
+    }
+  });
+}
+
 export default function decorate($block) {
   const $slidesContainer = $block.querySelector('ul');
   $slidesContainer.children[0].setAttribute('active', true);
 
   const numChildren = $slidesContainer.children.length;
+
+  let cardSize = 450;
+
+  if ($block.classList.contains('teasers')) {
+    cardSize = 600;
+    decorateTeaserItems($slidesContainer);
+  }
+
 
   const $controlsContainer = document.createElement('div');
   $controlsContainer.classList.add('controls-container');

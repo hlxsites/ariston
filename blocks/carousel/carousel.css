@@ -22,4 +22,6 @@
   object-fit: cover;
 }
 
-
+.carousel.block.teasers ul li {
+  width: 400px;
+}

@@ -44,7 +44,9 @@ function buildCarouselBlock(main) {
       const meta = readBlockConfig(sectionMeta);
       if (meta.style?.includes('Carousel')) {
         const block = buildBlock('carousel', [[section.querySelector('ul')]]);
-        block.classList.add('teasers');
+        if (meta.style?.includes('carousel-teaser-cards')) {
+          block.classList.add('teasers');
+        }
         section.append(block);
       }
     }

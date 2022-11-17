@@ -58,6 +58,31 @@
   /* nav height */
   --nav-height: 64px;
 
+  /* customer styles */
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",roboto,"Helvetica Neue",arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --bs-font-monospace: sfmono-regular,menlo,monaco,consolas,"Liberation Mono","Courier New",monospace;
+  --bs-gradient: linear-gradient(180deg, rgb(255 255 255 / 15%), rgb(255 255 255 / 0%));
 }
 
 body {
@@ -68,6 +93,10 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body.appear {
@@ -93,7 +122,7 @@ h3 { font-size: var(--heading-font-size-l) }
 
 .default-content-wrapper > :where(h1, h2, h3) {
   font-size: var(--heading-font-size-xxl);
-  padding-top: 6.25rem;
+  margin-top: 6.25rem;
   margin-bottom: 3rem;
 }
 
@@ -149,6 +178,9 @@ a.button.secondary, button.secondary {
   color: var(--text-color)
 }
 
+main {
+  overflow-x: hidden;
+}
 
 main input {
   font-size: 1.25rem;
@@ -185,9 +217,14 @@ main blockquote p::after {
   line-height: 0;
 }
 
+main svg {
+  display: block;
+}
+
 main img {
   max-width: 100%;
-  width: auto;
+  display: block;
+  width: 100%;
   height: auto;
 }
 
@@ -201,6 +238,12 @@ main img {
   .section > div {
     max-width: 1200px;
     margin: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --nav-height: 120px;
   }
 }
 
@@ -225,4 +268,19 @@ main .section.carousel.single {
   gap: 80px;
   max-width: 1200px;
   margin: auto;
+}
+
+.opn-anchor {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 1000px) {
+  .opn-anchor {
+    display: block;
+    position: relative;
+    top: calc(-1 * var(--nav-height) - 3rem);
+  }
 }

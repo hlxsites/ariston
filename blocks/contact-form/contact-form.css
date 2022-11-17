@@ -1,0 +1,16 @@
+main .section.contact-form-container {
+    padding: 120px 15px;
+}
+
+.contact-form {
+    color: var(--heading-color);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: underline;
+    text-decoration-color: var(--link-color);
+    text-transform: uppercase;
+    text-underline-offset: 3px;
+    text-align: center;
+    cursor: pointer;
+}

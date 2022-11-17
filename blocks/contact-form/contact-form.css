@@ -8,7 +8,6 @@ main .section.contact-form-container {
     font-weight: 700;
     letter-spacing: 2px;
     text-decoration: underline;
-    -webkit-text-decoration-color: var(--link-color);
     text-decoration-color: var(--link-color);
     text-transform: uppercase;
     text-underline-offset: 3px;

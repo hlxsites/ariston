@@ -25,3 +25,7 @@
 .carousel.block.teasers ul li {
   width: 400px;
 }
+
+.carousel.block.teasers ul li a:any-link:hover {
+  color: #ad0021;
+}

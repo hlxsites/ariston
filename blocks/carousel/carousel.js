@@ -33,13 +33,9 @@ export default function decorate($block) {
 
   const numChildren = $slidesContainer.children.length;
 
-  let cardSize = 450;
-
   if ($block.classList.contains('teasers')) {
-    cardSize = 600;
     decorateTeaserItems($slidesContainer);
   }
-
 
   const $controlsContainer = document.createElement('div');
   $controlsContainer.classList.add('controls-container');

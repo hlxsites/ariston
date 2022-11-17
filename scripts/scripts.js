@@ -12,10 +12,12 @@ import {
   loadBlocks,
   loadCSS,
   createOptimizedPicture,
+  readBlockConfig,
   toClassName,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'carousel']; // add your LCP blocks to the list
+
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 function buildHeroBlock(main) {
@@ -34,6 +36,23 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildCarouselBlock(main) {
+  [...main.querySelectorAll(':scope > div')].forEach((section) => {
+    const sectionMeta = section.querySelector('.section-metadata');
+
+    if (sectionMeta) {
+      const meta = readBlockConfig(sectionMeta);
+      if (meta.style?.includes('Carousel')) {
+        const block = buildBlock('carousel', [[section.querySelector('ul')]]);
+        if (meta.style?.includes('carousel-teaser-cards')) {
+          block.classList.add('teasers');
+        }
+        section.append(block);
+      }
+    }
+  });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -41,6 +60,7 @@ function buildHeroBlock(main) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    buildCarouselBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

@@ -263,6 +263,13 @@ main .section.highlight .default-content-wrapper > :where(h1, h2, h3):first-chil
   padding-top: 0;
 }
 
+main .section.carousel.single {
+  display: flex;
+  gap: 80px;
+  max-width: 1200px;
+  margin: auto;
+}
+
 .opn-anchor {
   visibility: hidden;
   height: 0;

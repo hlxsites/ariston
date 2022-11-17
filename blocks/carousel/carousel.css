@@ -7,6 +7,27 @@
   transition: transform 200ms;
 }
 
+.carousel.block .controls-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.carousel.block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.carousel.block.teasers {
+  flex-direction: column-reverse;
+}
+
+.carousel.block.teasers .controls-container {
+  position: relative;
+  bottom: 50px;
+}
+
 .carousel.block > div > div {
   overflow: hidden;
 }
@@ -24,6 +45,14 @@
 
 .carousel.block.teasers ul li {
   width: 400px;
+  box-shadow: rgb(143 143 143 / 20%) 0 0 20px 0;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-left: 8px;
+}
+
+.carousel.block.teasers ul li a > div {
+  padding: 12px;
 }
 
 .carousel.block.teasers ul li a:any-link:hover {

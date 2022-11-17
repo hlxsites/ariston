@@ -267,7 +267,12 @@ main .section.carousel.single {
   display: flex;
   gap: 80px;
   max-width: 1200px;
-  margin: auto;
+  margin: 200px auto;
+}
+
+
+main .section.carousel.full-width .default-content-wrapper > * {
+  max-width: 60%;
 }
 
 .opn-anchor {

@@ -19,10 +19,15 @@ function decorateTeaserItems($slidesContainer) {
     const aTag = $child.querySelector('a');
     if (aTag) {
       const newATag = aTag.cloneNode();
+      const wrapperDiv = document.createElement('div');
       aTag.remove();
-      newATag.innerHTML = $child.innerHTML;
+      wrapperDiv.innerHTML = $child.innerHTML;
+      newATag.append(wrapperDiv);
+      newATag.prepend(wrapperDiv.querySelector('picture'));
       $child.innerHTML = '';
       $child.append(newATag);
+
+      $child.querySelector('br ~ br')?.remove();
     }
   });
 }

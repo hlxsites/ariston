@@ -224,7 +224,7 @@ main svg {
 main img {
   max-width: 100%;
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
 }
 
